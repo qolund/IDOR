@@ -1,7 +1,11 @@
 import requests
 
-with requests.session() as s:
-    for i in range(0, 100):
+i = 0
+
+with requests.session() as s :
+    while True:
         response = s.get("http://testphp.vulnweb.com/artists.php?artist=%s" % (str(i)))
         if "lyzae" in response.text:
-            print(response.url)
+            print(f"Trouvé {response.url}")
+            break
+        i += 1
